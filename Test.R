@@ -1,5 +1,5 @@
 #Check if the required packages were installed and attached
-packsAsked <- c("dslabs", "tidyverse", "dplyr")
+packsAsked <- c("dslabs")
 
 insDemandIndex <- !(packsAsked %in% rownames(installed.packages()))
 sapply(packsAsked[insDemandIndex], install.packages)
@@ -12,3 +12,4 @@ for (i in packsToAtt){
 }
 
 #start coding here
+
