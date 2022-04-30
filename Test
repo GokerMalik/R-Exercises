@@ -1,4 +1,0 @@
-#check if the packages were installed
-if ("dslabs" %in% rownames(installed.packages()) == FALSE){
-  install.packages("dslabs")
-  }
