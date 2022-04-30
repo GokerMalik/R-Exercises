@@ -1,9 +1,4 @@
-packTest <- function (PackList){
-
-    if (PackList %in% rownames(installed.packages()) == FALSE){
-    install.packages(PackList)
-    }
-}
-
 packsAsked <- c("dslabs", "tidyverse")
-sapply(packsAsked, packTest)
+demandIndex <- !(packsAsked %in% rownames(installed.packages()))
+sapply((packsAsked[demandIndex]), install.packages)
+
