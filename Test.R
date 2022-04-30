@@ -11,4 +11,4 @@ for (i in packsToAtt){
   library(i, character.only = TRUE)
 }
 
-#start conding here
+#start coding here
