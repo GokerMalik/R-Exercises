@@ -1,4 +1,11 @@
-packsAsked <- c("dslabs", "tidyverse")
-demandIndex <- !(packsAsked %in% rownames(installed.packages()))
-sapply((packsAsked[demandIndex]), install.packages)
+packsAsked <- c("dslabs", "tidyverse", "dplyr")
 
+insDemandIndex <- !(packsAsked %in% rownames(installed.packages()))
+sapply(packsAsked[insDemandIndex], install.packages)
+
+attDemandIndex <- !(packsAsked %in% .packages())
+packsToAtt <- packsAsked[attDemandIndex]
+
+for (i in packsToAtt){
+  library(i, character.only = TRUE)
+}
