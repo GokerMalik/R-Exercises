@@ -1,3 +1,5 @@
+#Check if the required packages were installed and attached
+
 packsAsked <- c("dslabs", "tidyverse", "dplyr")
 
 insDemandIndex <- !(packsAsked %in% rownames(installed.packages()))
