@@ -1,5 +1,5 @@
 #Check if the required packages were installed and attached
-packsAsked <- c("dslabs")
+packsAsked <- c("dslabs", "dplyr")
 
 insDemandIndex <- !(packsAsked %in% rownames(installed.packages()))
 sapply(packsAsked[insDemandIndex], install.packages)
