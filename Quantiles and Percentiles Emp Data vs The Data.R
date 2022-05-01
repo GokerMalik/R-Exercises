@@ -14,6 +14,8 @@ for (i in packsToAtt){
 
 #start coding here
 
+
+
 # Course 2 
 #1.2 Introduction to Distributions
 #7- Normal Distributions
@@ -47,5 +49,5 @@ percentiles[names(percentiles) == "70%"]
 
 #how to find the value overlaps with the 50th quantile of a normal data-set
 #Result of percentile is a quantile
-quantiles <- qnorm(0.5, mean(mh), sd(mh))
-quantiles
+normalPercentiles <- qnorm(c(0.5,0.7), mean(mh), sd(mh))
+normalPercentiles
