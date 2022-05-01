@@ -13,6 +13,8 @@ for (i in packsToAtt){
 
 #start coding here
 
+#Course 1 - 3.4 Summarizing with dplyr
+
 #we can use arrange function to the rows of a data-frame
 murders <- murders %>% mutate(rate = total/population*10^5)
 murders %>% arrange(region, desc(rate))
