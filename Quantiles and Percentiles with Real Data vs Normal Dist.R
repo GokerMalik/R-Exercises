@@ -16,19 +16,11 @@ for (i in packsToAtt){
 
 # Course 2 
 #1.2 Introduction to Distributions
-#5- Normal Distributions
+#7- Normal Distributions
 
 #get the male heights from the data.frame
 ind <- heights$sex == "Male"
 mh <- heights$height[ind] #mh = male heights
-
-#calculate the average and the standard deviaton
-average <- mean(mh)
-standardDeviation <- sd(mh)
-#built-in SD function uses "lenght(vector)-1". For short number of values, rather use
-#sqrt(sum((x-average)^2)/length(vector))
-
-#7- Normal Distributions
 
 #Cumulative Distribution between intervals with real data
 mean(mh <= 68.5) - mean(mh <= 67.5)
@@ -39,4 +31,21 @@ pnorm(68.5, mean(mh), sd(mh)) - pnorm(67.5, mean(mh), sd(mh))
 pnorm(69.5, mean(mh), sd(mh)) - pnorm(68.5, mean(mh), sd(mh))
 pnorm(70.5, mean(mh), sd(mh)) - pnorm(69.5, mean(mh), sd(mh))
 #they return almost the same value. The ideal conditions are when there is only one integer
-#betwwen the intervals.
+#between the intervals.
+
+# Course 2 
+#1.3 Introduction to Distributions
+#1- Definition of quantiles
+
+#How to find the value overlaps with the 50th quantile of a custom data-set
+#Result of the quantile function is a percentile
+percentiles <- quantile(mh, c(0.5, 0.7))
+
+#quantile returns a vector. To access to the value, we should use the label.
+percentiles[names(percentiles) == "50%"]
+percentiles[names(percentiles) == "70%"]
+
+#how to find the value overlaps with the 50th quantile of a normal data-set
+#Result of percentile is a quantile
+quantiles <- qnorm(0.5, mean(mh), sd(mh))
+quantiles
