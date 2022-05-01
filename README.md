@@ -1,6 +1,6 @@
 # R-Exercises
 These codes are constructed by concluding from (not copying)
-Professor Rafael Irizarry's lectures on EdX.org wihtin the
+Professor Rafael Irizarry's lectures on EdX.org in the
 "Data Science Professional Certificate" program by Harvard University.
 
 The original course materials are on EdX.org platform at
