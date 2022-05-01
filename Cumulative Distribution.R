@@ -14,8 +14,8 @@ for (i in packsToAtt){
 
 #start coding here
 
-#Course 2 - 1.1 Introduction to Data Visualization
-#2 Introduction to Data Distributions
+#Course 2 - 1.2 Introduction to Distributions
+#2 Cumulative Distribution Function
 
 #function to calculate the percentage of a single pin
 cumulative_distribution <- function(pin) {
