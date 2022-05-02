@@ -1,5 +1,5 @@
 #Check if the required packages were installed and attached
-packsAsked <- c("dslabs", "dplyr", "tidyverse")
+packsAsked <- c("dslabs", "dplyr", "tidyverse", "ggrepel")
 
 insDemandIndex <- !(packsAsked %in% rownames(installed.packages()))
 sapply(packsAsked[insDemandIndex], install.packages)
@@ -26,6 +26,7 @@ p1 <- murders %>% ggplot(aes(population/10^6, total, col = region)) +
   ggtitle("Gun murders in US in 2010") +
   geom_abline(intercept = log10(r), lty = 2, color = "darkgrey") + ####here, it isn't clear that why using intercept works####
   geom_point(size = 3) +
-  geom_text(aes(label = abb), size = 3, nudge_x = 0.060, nudge_y = 0.080)
+# geom_text(aes(label = abb), size = 3, nudge_x = 0.060, nudge_y = 0.080) #standard geom_text
+  geom_text_repel(aes(label = abb), size = 3) #geom_text to prevent overlappings
 
 p1
