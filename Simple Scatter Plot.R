@@ -13,12 +13,19 @@ for (i in packsToAtt){
 
 #start coding here
 
-p1 <- murders %>% ggplot(aes(population/10^6, total, col = region)) + geom_point(size = 3) +
-  geom_text(aes(label = abb), size = 3, nudge_x = 0.060, nudge_y = 0.080) +
+#calculate the country-wise rate and store in variable "r"
+r <- murders %>% summarize(rate = sum(total)/sum(population)*10^6) %>% .$rate
+
+#make a customised ggplot
+p1 <- murders %>% ggplot(aes(population/10^6, total, col = region)) +
   scale_x_continuous(trans = "log10") +
   scale_y_continuous(trans = "log10") +
   xlab("Population in millions (log10)") +
   ylab("Total number of murders (log10)") +
-  ggtitle("Gun murders in US in 2010")
+  scale_color_discrete(name = "Regions") +
+  ggtitle("Gun murders in US in 2010") +
+  geom_abline(intercept = log10(r), lty = 2, color = "darkgrey") + ####here, it isn't clear that why using intercept works####
+  geom_point(size = 3) +
+  geom_text(aes(label = abb), size = 3, nudge_x = 0.060, nudge_y = 0.080)
 
 p1
