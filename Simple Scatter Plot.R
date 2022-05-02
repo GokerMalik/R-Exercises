@@ -13,6 +13,13 @@ for (i in packsToAtt){
 
 #start coding here
 
+# Course 2 
+#2.2 Introduction to Distributions
+#1- Layers
+#2- Tinkering
+#3- Scales, labels, colors
+#4- Add-on packages
+
 #calculate the country-wise rate and store in variable "r"
 r <- murders %>% summarize(rate = sum(total)/sum(population)*10^6) %>% .$rate
 
