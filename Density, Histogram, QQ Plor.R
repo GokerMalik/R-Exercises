@@ -1,5 +1,5 @@
 #Check if the required packages were installed and attached
-packsAsked <- c("dslabs", "dplyr", "tidyverse")
+packsAsked <- c("dslabs", "dplyr", "tidyverse", "ggrepel")
 
 insDemandIndex <- !(packsAsked %in% rownames(installed.packages()))
 sapply(packsAsked[insDemandIndex], install.packages)
@@ -20,12 +20,12 @@ for (i in packsToAtt){
 #filter the male heights
 d <- heights %>% filter(sex == "Male")
 
-#define a smoth density plot
+#define a smooth density plot
 p1 <- d %>%
   ggplot(aes(x=height)) +
   geom_density(fill = "blue")
 
-#define the histogram
+#define a histogram
 p2 <- d %>%
   ggplot(aes(x=height)) + 
   xlab("Male heights in inches") +
