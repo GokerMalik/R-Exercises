@@ -20,7 +20,7 @@ for (i in packsToAtt){
 #add the dollars_per_day value
 gapminder <- gapminder %>% mutate(dollars_per_day = gdp/population/365)
 
-#define yars
+#define years
 years <- c(pastYear = 1970, thisYear = 2010)
 
 p <- gapminder %>% filter(year == years["pastYear"] & !is.na(gdp)) %>%

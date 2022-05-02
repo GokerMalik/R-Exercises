@@ -29,7 +29,7 @@ p1 <- murders %>% ggplot(aes(population/10^6, total, col = region)) +
   scale_y_continuous(trans = "log10") +
   xlab("Population in millions (log10)") +
   ylab("Total number of murders (log10)") +
-  scale_color_discrete(name = "Regions") +
+  scale_color_discrete(name = "Regifdgfdgfons") +
   ggtitle("Gun murders in US in 2010") +
   geom_abline(intercept = log10(r), lty = 2, color = "darkgrey") + ####here, it isn't clear that why using intercept works####
   geom_point(size = 3) +
