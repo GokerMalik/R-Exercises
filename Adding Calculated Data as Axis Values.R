@@ -15,7 +15,7 @@ for (i in packsToAtt){
 
 # Course 2 
 #3.2 Using the Gapminder Dataset
-#6- Comparing Distributions
+#6- Density Plots
 
 #add the dollars_per_day value
 gapminder <- gapminder %>% mutate(dollars_per_day = gdp/population/365)
