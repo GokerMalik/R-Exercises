@@ -44,9 +44,4 @@ p <- gapminder %>% filter(year %in% years & country %in% countryList) %>%
   geom_density(alpha = 0.2, bw=0.75) +
   facet_grid(year~.)
 
-t <- murders %>% summarize(tot = murders$population)
-
-sum(murders$total)
-sum(murders$population)
-
-sum(murders$total)/(sum(murders$population)/10^6)
+p
