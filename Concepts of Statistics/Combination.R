@@ -1,0 +1,46 @@
+#Check if the required packages were installed and attached
+packsAsked <- c("gtools")
+
+insDemandIndex <- !(packsAsked %in% rownames(installed.packages()))
+sapply(packsAsked[insDemandIndex], install.packages)
+
+attDemandIndex <- !(packsAsked %in% .packages())
+packsToAtt <- packsAsked[attDemandIndex]
+
+for (i in packsToAtt){
+  library(i, character.only = TRUE)
+}
+
+#start coding here
+
+#configure the RNG to ensure the interoperability with the course material
+set.seed(1986, sample.kind = "Rounding")
+
+# Course 3 
+#1.2 Combinations and Permutations
+#1- Combinations and Permutations
+
+#generate a deck of cards
+suits <- c("Diamonds", "Clubs", "Hearts", "Spaces")
+numbers <- c("Ace", "Deuce", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King")
+deck <- expand.grid(number = numbers, suit = suits)
+
+deck <- paste(deck$number, deck$suit)
+
+#make a vector that includes all the aces
+aces <- paste ("Ace", suits)
+
+#make a vector that includes all the face cards
+faceCards <- c("King","Queen","Jack","Ten")
+faceCards <- expand.grid(number = faceCards, suit = suits)
+faceCards <- paste(faceCards$number, faceCards$suit)
+
+#list all the hands (this time the order doesn't matter)
+hands <- combinations(52, 2, v = deck)
+
+#calculate the probability that having an Ace and a faceCard. Note that
+#all the Ace Cards are listed before any face cards in Hands
+mean(hands[,1] %in% aces & hands[,2] %in% faceCards)
+
+#if we didn't know that in combinations, the first column is not always the ace, we could rather use
+mean((hands[,1] %in% aces & hands[,2] %in% faceCards)|(hands[,2] %in% aces & hands[,1] %in% faceCards))
