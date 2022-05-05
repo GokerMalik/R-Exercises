@@ -40,7 +40,20 @@ hands <- combinations(52, 2, v = deck)
 
 #calculate the probability that having an Ace and a faceCard. Note that
 #all the Ace Cards are listed before any face cards in Hands
-mean(hands[,1] %in% aces & hands[,2] %in% faceCards)
+r1 <- mean(hands[,1] %in% aces & hands[,2] %in% faceCards)
 
 #if we didn't know that in combinations, the first column is not always the ace, we could rather use
-mean((hands[,1] %in% aces & hands[,2] %in% faceCards)|(hands[,2] %in% aces & hands[,1] %in% faceCards))
+r2 <- mean((hands[,1] %in% aces & hands[,2] %in% faceCards)|(hands[,2] %in% aces & hands[,1] %in% faceCards))
+
+r1 == r2
+
+#Run a Monte Carlo simulation to see if the outcome is similar
+n <- 10000
+results <- replicate(n, {
+  hand <- sample(deck,2)
+  (hand[1] %in% aces & hand[2] %in% faceCards) |
+    (hand[1] %in% faceCards & hand[2] %in% aces)
+})
+
+r3 <- mean(results)
+r3 - r1
