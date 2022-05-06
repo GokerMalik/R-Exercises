@@ -27,7 +27,7 @@ bdays <- sample(1:365, n, replace = TRUE)
 #check if any was duplicated
 any(duplicated(bdays))
 
-#run a monte-carlo experiment to check the porbability of two people havin the same birthday
+#run a monte-carlo experiment to check the probability of two people having the same birthday
 B <- 10000
 results <- replicate (B, {
   bdays <- sample(1:365, n, replace = TRUE)
