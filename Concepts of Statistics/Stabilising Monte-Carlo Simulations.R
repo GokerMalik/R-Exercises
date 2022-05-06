@@ -1,5 +1,5 @@
 #Check if the required packages were installed and attached
-packsAsked <- c("gtools", "tidyverse")
+packsAsked <- c()
 
 insDemandIndex <- !(packsAsked %in% rownames(installed.packages()))
 sapply(packsAsked[insDemandIndex], install.packages)
@@ -14,10 +14,6 @@ for (i in packsToAtt){
 #start coding here
 
 #configure the RNG to ensure the interoperability with the course material
-set.seed(1)
-signif(3)
-
-
 
 # Course 3 
 #1.2 Combinations and Permutations
