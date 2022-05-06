@@ -1,5 +1,5 @@
 #Check if the required packages were installed and attached
-packsAsked <- c("dslabs","dplyr")
+packsAsked <- c("dslabs","dplyr", "tidyverse")
 
 insDemandIndex <- !(packsAsked %in% rownames(installed.packages()))
 sapply(packsAsked[insDemandIndex], install.packages)
@@ -49,8 +49,9 @@ p2 <- data1 %>%
 
 # compute the US average rate by year
 avg <- us_contagious_diseases %>%
-  filter(disease == the_disease) %>% group_by(year) %>%
+  filter(disease == "Measles") %>% group_by(year) %>%
   summarize(us_rate = sum(count, na.rm = TRUE)/sum(population, na.rm = TRUE)*10000)
+
 
 # make line plot of measles rate by year by state
 p3 <- data1 %>%
@@ -58,9 +59,9 @@ p3 <- data1 %>%
   ggplot() +
   #plot all the states
   geom_line(aes(year, rate, group = state), color = "grey50", 
-            show.legend = FALSE, alpha = 0.2, size = 1) +
+           show.legend = FALSE, alpha = 0.2, size = 1) +
   #plot the US average
-  geom_line(mapping = aes(year, us_rate), data = avg, size = 1, col = "black") +
+  geom_line(data = avg, mapping = aes(year, us_rate), size = 1, col = "black") +
   scale_y_continuous(trans = "sqrt", breaks = c(5, 25, 125, 300)) +
   ggtitle("Cases per 10,000 by state") +
   xlab("") +

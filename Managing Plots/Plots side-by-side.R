@@ -1,5 +1,5 @@
 #Check if the required packages were installed and attached
-packsAsked <- c("dslabs", "dplyr", "tidyverse")
+packsAsked <- c("dslabs", "dplyr", "tidyverse", "gridExtra")
 
 insDemandIndex <- !(packsAsked %in% rownames(installed.packages()))
 sapply(packsAsked[insDemandIndex], install.packages)
@@ -17,7 +17,7 @@ for (i in packsToAtt){
 #2.2 Introduction to Distributions
 #5- Other Examples
 
-#define histograms with male heights and femalie heights
+#define histograms with male heights and female heights
 p1 <- heights %>% filter(sex == "Male") %>%
   ggplot(aes(x = height)) +
   geom_histogram(binwidth = 1, fill = "blue", col = "black")
