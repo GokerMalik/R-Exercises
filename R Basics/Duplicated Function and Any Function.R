@@ -14,7 +14,7 @@ for (i in packsToAtt){
 #start coding here
 
 #configure the RNG to ensure the interoperability with the course material
-set.seed(1986, sample.kind = "Rounding")
+set.seed(1, sample.kind = "Rounding")
 
 # Course 3 
 #1.2 Combinations and Permutations

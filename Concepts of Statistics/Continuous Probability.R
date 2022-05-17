@@ -14,6 +14,7 @@ for (i in packsToAtt){
 #start coding here
 
 #configure the RNG to ensure the interoperability with the course material
+set.seed(1, sample.kind = "Rounding")
 
 # Course 3 
 #2.1 Continious Probability

@@ -14,16 +14,21 @@ for (i in packsToAtt){
 #start coding here
 
 #configure the RNG to ensure the interoperability with the course material
-set.seed(1986, sample.kind = "Rounding")
+set.seed(1, sample.kind = "Rounding")
 
 # Course 3 
 #1.2 Combinations and Permutations
 #1- Combinations and Permutations
 
+####HOW PERMUTATION WORKS#####
+
 #print all the way that you can pick two elements from the list of numbers from 1 to 5
+#the order matters so (1, 2) is not identical to (2, 1)
 couples <- permutations(5,2)
 
-#create a list of all the possible phone numbers using each charachter only once
+#We can define a vector to be used in permutation function
+
+#create a list of all the possible phone numbers using each character only once
 #below we define a sequence from 0 to 9 rather than 1 to 10
 numbersWithoutRepeat <- permutations(10, 7, v = 0:9)
 
@@ -31,23 +36,25 @@ n <- nrow(numbersWithoutRepeat)
 index <- sample(n, 5)
 numbersWithoutRepeat[index,]
 
+###COMPUTE ALL THE POSSIBLE WAYS TO PICK TWO CARDS FROM A DECK###
+
 #generate a deck of cards
 suits <- c("Diamonds", "Clubs", "Hearts", "Spaces")
 numbers <- c("Ace", "Deuce", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King")
 deck <- expand.grid(number = numbers, suit = suits)
-
 deck <- paste(deck$number, deck$suit)
 
 #calculate the probability of picking a king
 kings <- paste("King", suits)
 mean(deck %in% kings)
 
-#find all the possible hands
+#find all the scenarios of picking two cards
 hands <- permutations (52, 2, v= deck)
 
-#create a hand
+#chose a card as the first and as the second (intersections are OK)
 first_card <- hands[,1]
 second_card <- hands[,2]
+
 
 #check how many cases the first card is a king
 Cases1 <- sum(first_card %in% kings)
