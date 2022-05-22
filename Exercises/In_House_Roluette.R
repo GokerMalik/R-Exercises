@@ -8,7 +8,7 @@ penalty <- -1
 p_win = 5/38
 p_loose <- 1-p_win
 
-expected_one_bet <- 6*p_win -1*p_loose
+expected_one_bet <- price*p_win + penalty*p_loose
 se_one_bet <- abs(price-penalty)*sqrt(p_win*p_loose)
 
 a500_bets_avg <- expected_one_bet
