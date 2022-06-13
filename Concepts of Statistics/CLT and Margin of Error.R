@@ -18,7 +18,7 @@ set.seed(1, sample.kind = "Rounding")
 
 # Course 4 
 #2 The Central Limit Theorem in Practice
-#1- The Central Limit Theorem in Practice
+#2- Margin of Error
 
 ds_theme_set()
 take_poll(25)
@@ -27,5 +27,12 @@ take_poll(25)
 #proportion of blue beads equals to 12/25 = 0.48
 
 X_hat <- 0.48
-se <- sqrt(X_hat*(1-X_hat)/25)
+se <- sqrt(X_hat*(1-X_hat)/2000)
+
+se
 pnorm(0.01/se) - pnorm(-0.01/se)
+
+
+
+#the line below actually calculates the probability of being 2SE away from the average.t
+pnorm(2) - pnorm(-2)
