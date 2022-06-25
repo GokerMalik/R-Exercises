@@ -32,9 +32,10 @@ find_intervals <- function(N){
   
   X <- sample(c(0,1), size = N, replace = TRUE, prob = c(1-p, p))
   X_hat <- mean(X)
-  SE_hat <- sqrt(X_hat*(1-X_hat)/N)
-  2*c(X_hat, X_hat - 2*SE_hat, X_hat + 2*SE_hat)-1
-  
+  SE_X_hat <- sqrt(X_hat*(1-X_hat)/N)
+  2*c(X_hat, X_hat - 2*SE_X_hat, X_hat + 2*SE_X_hat)-1
+  #note that the calculations for p is turned into calculations for d by
+  #taking the advantage of the formula: d=2p-1
   
 }
 
@@ -53,8 +54,10 @@ polls
 
 #here, Mr Silver's approach combines the samples from 12 polls.
 
-d_hat <- polls %>% summarize(avg = sum(estimate*sample_size) / sum(sample_size)) %>% .$avg
+d_hat_big_poll <- polls %>% summarize(avg = sum(estimate*sample_size) / sum(sample_size)) %>% .$avg
+p_hat_big_poll <- (1+d_hat_big_poll)/2
+se_p_hat_big_poll <- sqrt(p_hat_big_poll*(1-p_hat_big_poll)/sum(polls$sample_size))
+se_d_hat_big_poll <- 2*se_hat_big_poll
 
-p_hat <- (1+d_hat)/2
-
-moe <- 2*qnorm(0.975)*sqrt(p_hat*(1-p_hat)/sum(polls$sample_size))
+moe_d_hat <- se_d_hat_big_poll*qnorm(0.975)
+moe_d_hat

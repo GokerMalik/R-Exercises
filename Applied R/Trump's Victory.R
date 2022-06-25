@@ -39,6 +39,8 @@ p_hat <- (d_hat + 1)/2
 
 #estimate the marigin of error
 moe <- qnorm(0.95)*2*sqrt(p_hat*(1-p_hat)/sum(polls$samplesize))
+(2*p_hat) - 1
+moe
 
 # However, if we check the data, it doesn't seem to be randomly distributed
 polls %>% ggplot(aes(spread)) + geom_histogram(color = 'black', binwidth = .01)
@@ -54,8 +56,8 @@ polls %>% group_by(pollster)%>%
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 
-#the theory to use multiple to obtain a larger data was working correctly when the
-#result of the polls were closer. However, there are differences accross the polls
+#the theory to use multiple polls to obtain a larger data was working correctly when the
+#result of the polls were closer. However, there are differences across the polls
 #which can not be explained by the theory.
 
 
@@ -63,7 +65,7 @@ polls %>% group_by(pollster)%>%
 #4: Statistical Models
 #4- Data-Driven Models
 
-#take only the latest polls.
+#take only the latest polls from wach pollster.
 #polls <- polls_us_election_2016
 
 one_poll_per_pollster <- polls %>% group_by(pollster) %>%
@@ -74,6 +76,13 @@ one_poll_per_pollster <- polls %>% group_by(pollster) %>%
 one_poll_per_pollster %>%
   ggplot(aes(spread)) + geom_histogram(binwidth = 0.01)
 
-# now we will try to create a new urn but not with the beads ones and zeros.
-#Instead, we are going to include results by pollster. We will assume that the
-#expected value of the urn is the actual spread.
+#CLT can explain how the data could be processed. To make the data
+#normally distributes, we can simply use the average of the spreads as
+#the spread is a random variable.
+
+sd(one_poll_per_pollster$spread)
+
+results <- one_poll_per_pollster %>%
+  summarize(avg = mean(spread), se = sd(spread)/sqrt(length(spread))) %>%
+  mutate(start = avg - qnorm(0.975)*se, end = avg + qnorm(0.975)*se)
+round(results*100,1)
